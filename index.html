@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Персональное приглашение | Диана қыз ұзату</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        @font-face { font-family: Carolina; src: url(shrift1.woff) format("woff"); }
+        @font-face { font-family: Shelley; src: url(shrift2.woff) format("woff"); }
+        @font-face { font-family: MonumentaPro; src: url(shrift3.woff) format("woff"); }
+
+        * { -webkit-tap-highlight-color: transparent; }
+
+        html {
+            height: 100%;
+            height: -webkit-fill-available;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: MonumentaPro, Arial, sans-serif;
+            color: #2d2416;
+            background: #f8f6f2;
+            position: relative;
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+        }
+
+.bg {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+
+    background-image: url('3.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    z-index: -2;
+    pointer-events: none;
+
+    /* ВАЖНО */
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+
+        /* Фон без изменений - оригинальные цвета */
+        .bg::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: transparent;
+        }
+
+        .invitation-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .content-wrapper {
+            width: 100%;
+            animation: fadeIn 1.2s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .bride-name {
+            font-family: Shelley, cursive;
+            font-size: 4rem;
+            color: #8b6f47;
+            text-shadow: 
+                2px 2px 4px rgba(255,255,255,0.8),
+                -1px -1px 2px rgba(139,111,71,0.3);
+            margin-bottom: 0.2rem;
+            animation: slideDown 0.8s ease 0.3s backwards;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-30px); }
+        }
+
+        .event-type {
+            font-size: 1.1rem;
+            letter-spacing: 0.3rem;
+            text-transform: uppercase;
+            color: #6b5539;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+            font-weight: 500;
+        }
+
+        /* ===== УЛУЧШЕННЫЕ БЛОКИ С КОНТРАСТОМ ===== */
+        .guest-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.55), rgba(250,248,245,0.42));
+            border: 2px solid #c9b388;
+            border-radius: 20px;
+            padding: 0.8rem 1.5rem;
+            box-shadow: 
+                0 8px 24px rgba(139,111,71,0.2),
+                0 2px 8px rgba(201,179,136,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.8);
+            animation: fadeInScale 0.8s ease 0.4s backwards;
+            display: inline-block;
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9); }
+        }
+
+        .guest-label {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #8b6f47;
+            font-weight: 600;
+        }
+
+        .guest-name {
+            font-family: Shelley, cursive;
+            font-size: 2rem;
+            line-height: 1.3;
+            color: #6b5539;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+        }
+
+        .greeting { 
+            font-size: 0.9rem;
+            color: #4a3f2e;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+            font-weight: 500;
+        }
+        
+        .message { 
+            font-size: 0.85rem; 
+            line-height: 1.6;
+            color: #5a4d38;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.6);
+        }
+
+        .hosts-section {
+            margin: 1.5rem 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(250,248,245,0.92));
+            border: 2px solid #c9b388;
+            border-radius: 18px;
+            padding: 1rem;
+            box-shadow: 
+                0 6px 20px rgba(139,111,71,0.2),
+                0 2px 6px rgba(201,179,136,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.8);
+        }
+
+        .hosts-label {
+            font-size: 0.85rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: #8b6f47;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .hosts-names {
+            font-family: Shelley, cursive;
+            font-size: 2.2rem;
+            color: #6b5539;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+            line-height: 1.3;
+        }
+
+        /* Заголовки для карточек */
+        .card-header {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #8b6f47;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* УЛУЧШЕННЫЕ КАРТОЧКИ */
+        .detail-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(250,248,245,0.92));
+            border: 2px solid #c9b388;
+            border-radius: 18px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            box-shadow: 
+                0 6px 20px rgba(139,111,71,0.2),
+                0 2px 6px rgba(201,179,136,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.8);
+        }
+
+        .detail-value {
+            font-family: Shelley, cursive;
+            font-size: 1.8rem;
+            color: #6b5539;
+        }
+
+        .detail-value.time {
+            font-family: MonumentaPro;
+            font-size: 1.5rem;
+            color: #4a3f2e;
+            font-weight: 600;
+        }
+
+        .detail-value.address {
+            font-family: MonumentaPro;
+            font-size: 0.8rem;
+            line-height: 1.6;
+            color: #5a4d38;
+        }
+
+        .divider-line {
+            width: 60px;
+            height: 2px;
+            margin: 0.8rem auto;
+        }
+
+        .gis-button {
+            display: inline-block;
+            margin-top: 0.5rem;
+            padding: 0.6rem 1.4rem;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #ad986e, #c9b388);
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            box-shadow: 
+                0 4px 12px rgba(173,152,110,0.4),
+                0 2px 4px rgba(139,111,71,0.3);
+            transition: all 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .gis-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 6px 16px rgba(173,152,110,0.5),
+                0 3px 6px rgba(139,111,71,0.4);
+        }
+
+        /* УЛУЧШЕННЫЙ БЛОК RSVP */
+        .rsvp-section {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(250,248,245,0.92));
+            border: 2px solid #c9b388;
+            border-radius: 18px;
+            padding: 1.2rem;
+            margin-top: 1.5rem;
+            box-shadow: 
+                0 6px 20px rgba(139,111,71,0.2),
+                0 2px 6px rgba(201,179,136,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.8);
+        }
+
+        .rsvp-section > .mb-2 {
+            color: #4a3f2e;
+            font-weight: 600;
+        }
+
+        .rsvp-btn {
+            width: 100%;
+            padding: 0.9rem;
+            border-radius: 50px;
+            border: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.15);
+        }
+
+        .btn-accept {
+            background: linear-gradient(135deg, #ad986e, #c9b388);
+            color: #fff;
+            box-shadow: 
+                0 4px 12px rgba(173,152,110,0.4),
+                0 2px 4px rgba(139,111,71,0.3);
+        }
+
+        .btn-accept:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 6px 16px rgba(173,152,110,0.5),
+                0 3px 6px rgba(139,111,71,0.4);
+        }
+
+        .btn-decline {
+            background: rgba(255,255,255,0.7);
+            color: #6b5539;
+            border: 2px solid #c9b388;
+            text-shadow: none;
+        }
+
+        .btn-decline:hover:not(:disabled) {
+            background: rgba(255,255,255,0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139,111,71,0.2);
+        }
+
+        .rsvp-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        #rsvp-message {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #8b6f47;
+            font-weight: 500;
+        }
+
+        /* Mobile tweaks */
+        @media (max-width: 576px) {
+            .bride-name { font-size: 3.2rem; }
+            .guest-name { font-size: 1.7rem; }
+            .hosts-names { font-size: 1.9rem; }
+            .hosts-label { font-size: 0.75rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<div class="invitation-container">
+    <div class="container">
+        <div class="content-wrapper text-center">
+
+            <h1 class="bride-name">Диана</h1>
+            <div class="event-type mb-3">ҚЫЗ ҰЗАТУ</div>
+
+            <div class="guest-card mb-3">
+                <div class="guest-label">Шақырылады</div>
+                <div class="guest-name" id="guestName">
+                    Ержан<br>Гульзайра
+                </div>
+            </div>
+
+            <div class="greeting" style="color: white !important">Құрметті қонақтар!</div>
+            <div class="message mb-3" style="color: white !important;">
+                Сіздерді аяулы қызымыз Диананың ұзату тойына
+                арналған салтанатты ақ дастарханымыздың
+                қадірлі қонағы болуға шақырамыз!
+            </div>
+
+
+            <div class="detail-card">
+                <div class="card-header">Күні мен уақыты</div>
+                <div class="detail-value">02 мамыр</div>
+                <div class="divider-line"></div>
+                <div class="detail-value time">17:00</div>
+            </div>
+
+            <div class="detail-card">
+                <div class="card-header">Мекенжайы</div>
+                <div class="detail-value address">
+                    Петропавл қ. | Конституция Казахстана, 41<br>
+                    "Garden Hall"
+                </div>
+            </div>
+
+            <a href="https://go.2gis.com/11K3s" target="_blank" class="gis-button">
+                Картада ашу (2ГИС)
+            </a>
+
+            <div class="hosts-section">
+                <div class="hosts-label">Той иелері</div>
+                <div class="hosts-names">Бақыт - Жанна</div>
+            </div>
+            
+            <div class="rsvp-section">
+                <div class="mb-2">Тойға келесізбе?</div>
+                <div class="row g-2">
+                    <div class="col-6">
+                        <button class="rsvp-btn btn-accept" onclick="submitRSVP('Иә, келемін')">Келемін</button>
+                    </div>
+                    <div class="col-6">
+                        <button class="rsvp-btn btn-decline" onclick="submitRSVP('Келе алмаймын')">Келмеймін</button>
+                    </div>
+                </div>
+                <div id="rsvp-message"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+function submitRSVP(response) {
+    // Получаем имя гостя из элемента
+    const guestNameElement = document.getElementById('guestName');
+    const guestName = guestNameElement.innerText.trim().replace(/\n/g, ' ');
+    
+    // Base URL Google Form
+    const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLScJBTWD6b3RwOgBwIIPppRBb0A7z-TuSV2WsEOGu18cNx1Ynw/formResponse';
+    
+    // Параметры формы
+    const params = new URLSearchParams({
+        'entry.1898004027': guestName,  // Имя гостя
+        'entry.1495192587': response     // Ответ (Иә, келемін или Келе алмаймын)
+    });
+    
+    // Создаем скрытый iframe для отправки формы
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    iframe.name = 'hidden_iframe';
+    document.body.appendChild(iframe);
+    
+    // Создаем форму
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = formUrl;
+    form.target = 'hidden_iframe';
+    
+    // Добавляем поля
+    params.forEach((value, key) => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = value;
+        form.appendChild(input);
+    });
+    
+    document.body.appendChild(form);
+    form.submit();
+    
+    // Показываем сообщение пользователю
+    const messageDiv = document.getElementById('rsvp-message');
+    if (response === 'Иә, келемін') {
+        messageDiv.innerHTML = '✓ Рақмет! Сіздің жауабыңыз қабылданды.<br>Сізді көруге асығамыз!';
+        messageDiv.style.color = '#8b6f47';
+    } else {
+        messageDiv.innerHTML = '✓ Рақмет! Сіздің жауабыңыз қабылданды.';
+        messageDiv.style.color = '#8b6f47';
+    }
+    
+    // Отключаем кнопки после отправки
+    document.querySelectorAll('.rsvp-btn').forEach(btn => {
+        btn.disabled = true;
+    });
+    
+    // Удаляем форму через секунду
+    setTimeout(() => {
+        document.body.removeChild(form);
+    }, 1000);
+}
+</script>
+
+</body>
+</html>
+
